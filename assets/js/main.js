@@ -18,7 +18,7 @@ async function getData() {
 
 getData().then(res => {
   // console.log(res);
-  totalCases.innerHTML = res.Global.TotalConfirmed;
+  totalCases.innerHTML += res.Global.TotalConfirmed;
   newCases.innerHTML += res.Global.NewConfirmed;
   totalRecovered.innerHTML = res.Global.TotalRecovered;
   newRecovered.innerHTML += res.Global.NewRecovered;
