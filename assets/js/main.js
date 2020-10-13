@@ -1,5 +1,4 @@
 covidSummary = "https://api.covid19api.com/summary";
-// covidSummary = "./global.json";
 // SELECT GLOBAL ELEMENTS
 const totalCases = document.getElementById("totalCases");
 const newCases = document.getElementById("newCases");
@@ -13,9 +12,6 @@ const allCountries = document.getElementById("allCountries");
 async function getData() {
   const a = await fetch(covidSummary);
   const res = await (a.json());
-  // console.log(res.Date);
-  // const  d = formatDate(res.Date);
-  // console.log(d);
   return res;
 }
 
@@ -77,18 +73,6 @@ const monthsNames = [
 
 function formatDate(dateString) {
   let date = new Date(dateString);
-  return `${date.getDate()} ${monthsNames[date.getMonth() - 1]} ${date.getFullYear()} ${date.getHours()}: ${date.getMinutes()}`;
+  return `${date.getDate()} ${monthsNames[date.getMonth() - 1]} ${date.getFullYear()}`;
 }
 
-
-$("path, circle").hover(function(e) {
-  $('#info-box').css('display','block');
-  $('#info-box').html($(this).data('info'));
-});
-$("path, circle").mouseleave(function(e) {
-  $('#info-box').css('display','none');
-});
-$(document).mousemove(function(e) {
-  $('#info-box').css('top',e.pageY-$('#info-box').height()-30);
-  $('#info-box').css('left',e.pageX-($('#info-box').width())/2);
-}).mouseover();

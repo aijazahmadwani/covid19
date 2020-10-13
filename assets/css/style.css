@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 
 body{
-  overflow-x: hidden;
   font-family: Lato, sans-serif;
   color:#000;
+  border: 0;
+  padding: 0;
 }
 
 /*Navigation*/
@@ -29,9 +30,14 @@ body{
   .navbar-dark .navbar-nav .nav-link:hover {
     color: #6C757D;
   }
-h3{
-    font-weight: 600;
+h1{
+    max-width: 20rem;
+    color:#e23028;
     font-size: 1.5rem;
+    background: rgba(226,48,40,.0627451);
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .25rem;
 } 
 .col-md-4{
   padding-right:0px;
