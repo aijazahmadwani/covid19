@@ -1,4 +1,4 @@
-covidSummary= "https://api.covid19api.com/summary";
+covidSummary = "https://api.covid19api.com/summary";
 // covidSummary = "./global.json";
 // SELECT GLOBAL ELEMENTS
 const totalCases = document.getElementById("totalCases");
@@ -7,17 +7,21 @@ const totalRecovered = document.getElementById("totalRecovered");
 const newRecovered = document.getElementById("newRecovered");
 const totalDeaths = document.getElementById("totalDeaths");
 const newDeaths = document.getElementById("newDeaths");
-
+const lastUpdatedDate = document.getElementById("last-updated");
 const allCountries = document.getElementById("allCountries");
 
 async function getData() {
   const a = await fetch(covidSummary);
   const res = await (a.json());
+  // console.log(res.Date);
+  // const  d = formatDate(res.Date);
+  // console.log(d);
   return res;
 }
 
 getData().then(res => {
   // console.log(res);
+  lastUpdatedDate.innerHTML = formatDate(res.Date);
   totalCases.innerHTML += res.Global.TotalConfirmed;
   newCases.innerHTML += res.Global.NewConfirmed;
   totalRecovered.innerHTML = res.Global.TotalRecovered;
@@ -26,9 +30,9 @@ getData().then(res => {
   newDeaths.innerHTML += res.Global.NewDeaths;
   // LENGTH OF COUNTRIES
   const totalNoOfCountries = res.Countries.length;
-  
-  
-  for (let i=0; i < res.Countries.length; i++) {
+
+
+  for (let i = 0; i < res.Countries.length; i++) {
     allCountries.innerHTML += `
     
       <tr>
@@ -54,3 +58,37 @@ function storeVariable(country) {
   sessionStorage.setItem("countryName", country);
   return;
 }
+
+
+// FORMAT DATES
+const monthsNames = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+function formatDate(dateString) {
+  let date = new Date(dateString);
+  return `${date.getDate()} ${monthsNames[date.getMonth() - 1]} ${date.getFullYear()} ${date.getHours()}: ${date.getMinutes()}`;
+}
+
+
+$("path, circle").hover(function(e) {
+  $('#info-box').css('display','block');
+  $('#info-box').html($(this).data('info'));
+});
+$("path, circle").mouseleave(function(e) {
+  $('#info-box').css('display','none');
+});
+$(document).mousemove(function(e) {
+  $('#info-box').css('top',e.pageY-$('#info-box').height()-30);
+  $('#info-box').css('left',e.pageX-($('#info-box').width())/2);
+}).mouseover();
