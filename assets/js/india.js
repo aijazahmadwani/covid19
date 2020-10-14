@@ -19,14 +19,15 @@ states = []
 getData().then(res => {
   keys = Object.keys(res)
   // console.log(keys);
-  // console.log(res[keys[1]].statecode);
+
   // console.log(res[keys[1]].districtData);
   // console.log(Object.keys(res[keys[1]].districtData));
-  for(i=1;i<keys.length;i++){
+  for (i = 1; i < keys.length; i++) {
     let active = [],
-    confirmed = [],
-    recovered = [],
-    deceased = [];
+      confirmed = [],
+      recovered = [],
+      deceased = [];
+    // console.log(res[keys[i]].statecode);
     for (let key of Object.keys(res[keys[i]].districtData)) {
       // console.log(key);
       active.push(res[keys[i]].districtData[key].active);
@@ -47,20 +48,30 @@ getData().then(res => {
     var deceasedSum = deceased.reduce(function (a, b) {
       return a + b;
     }, 0);
-  
-        allStates.innerHTML += `
+
+    allStates.innerHTML += `
         <tr>
           <th scope="row">${keys[i]}</th>
+          <td> ${res[keys[i]].statecode}</td>
           <td>${confirmedSum}</td>
           <td>${activeSum}</td>
           <td>${deceasedSum}</td>
           <td>${recoveredSum}</td>
       </tr>
       `;
+    // add data to map
+    if(res[keys[i]].statecode!='LA')
+  {
+    sc = res[keys[i]].statecode;
+    ele = document.getElementById(sc);
+    ele.setAttribute("data-info", `<strong>${keys[i]}</strong><br><div>Cases: ${confirmedSum}</div><div>Active: ${activeSum}</div><div>Deaths: ${deceasedSum}</div><div>Recoveries: ${recoveredSum}</div>`);
+   
+  }
+   
 
   }
- 
-    // console.log(keys[1]);
+
+  // console.log(keys[1]);
   // for (let key of Object.keys(res[keys[1]].districtData)) {
   //   // console.log(key);
   //   active.push(res[keys[1]].districtData[key].active);
@@ -166,13 +177,12 @@ function formatDate(dateString) {
 }
 
 
-
-
-
+a = "aijaz"
 $("path, circle").hover(function (e) {
   $('#info-box').css('display', 'block');
   $('#info-box').html($(this).data('info'));
 });
+
 $("path, circle").mouseleave(function (e) {
   $('#info-box').css('display', 'none');
 });
@@ -180,3 +190,5 @@ $(document).mousemove(function (e) {
   $('#info-box').css('top', e.pageY - $('#info-box').height() - 30);
   $('#info-box').css('left', e.pageX - ($('#info-box').width()) / 2);
 }).mouseover();
+
+

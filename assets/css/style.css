@@ -85,7 +85,7 @@ a:hover{
 }
 path:hover, circle:hover {
   stroke: #fff !important;
-  stroke-width:2px;
+  stroke-width:1;
   stroke-linejoin: round;
   fill: #6C757D !important;
   cursor: pointer;
