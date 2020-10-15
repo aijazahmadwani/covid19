@@ -1,11 +1,12 @@
 indiaURL = "https://api.covid19india.org/state_district_wise.json";
+let totalCasesIndia=0,totalDeathsIndia=0,totalRecoveredIndia=0;
 // indiaURL = "./indiaData.json";
 // SELECT GLOBAL ELEMENTS
-// const totalCases = document.getElementById("totalCases");
+const totalCases = document.getElementById("totalCases");
 // const newCases = document.getElementById("newCases");
-// const totalRecovered = document.getElementById("totalRecovered");
+const totalRecovered = document.getElementById("totalRecovered");
 // const newRecovered = document.getElementById("newRecovered");
-// const totalDeaths = document.getElementById("totalDeaths");
+const totalDeaths = document.getElementById("totalDeaths");
 // const newDeaths = document.getElementById("newDeaths");
 // const lastUpdatedDate = document.getElementById("last-updated");
 const allStates = document.getElementById("allStates");
@@ -48,7 +49,9 @@ getData().then(res => {
     var deceasedSum = deceased.reduce(function (a, b) {
       return a + b;
     }, 0);
-
+    totalCasesIndia += confirmedSum;
+    totalDeathsIndia += deceasedSum;
+    totalRecoveredIndia += recoveredSum;
     allStates.innerHTML += `
         <tr>
           <th scope="row">${keys[i]}</th>
@@ -119,12 +122,12 @@ getData().then(res => {
   // }
 
   // console.log(res);
-  //   lastUpdatedDate.innerHTML = formatDate(res.Date);
-  //   totalCases.innerHTML += res.Global.TotalConfirmed;
+    // lastUpdatedDate.innerHTML = formatDate(res.Date);
+    totalCases.innerHTML += totalCasesIndia;
   //   newCases.innerHTML += res.Global.NewConfirmed;
-  //   totalRecovered.innerHTML = res.Global.TotalRecovered;
+    totalRecovered.innerHTML = totalRecoveredIndia;
   //   newRecovered.innerHTML += res.Global.NewRecovered;
-  //   totalDeaths.innerHTML = res.Global.TotalDeaths;
+    totalDeaths.innerHTML = totalDeathsIndia;
   //   newDeaths.innerHTML += res.Global.NewDeaths;
   //   // LENGTH OF COUNTRIES
   //   const totalNoOfCountries = res.Countries.length;
