@@ -52,7 +52,6 @@ getData().then(res => {
     allStates.innerHTML += `
         <tr>
           <th scope="row">${keys[i]}</th>
-          <td> ${res[keys[i]].statecode}</td>
           <td>${confirmedSum}</td>
           <td>${activeSum}</td>
           <td>${deceasedSum}</td>
@@ -64,8 +63,11 @@ getData().then(res => {
   {
     sc = res[keys[i]].statecode;
     ele = document.getElementById(sc);
-    ele.setAttribute("data-info", `<strong>${keys[i]}</strong><br><div>Cases: ${confirmedSum}</div><div>Active: ${activeSum}</div><div>Deaths: ${deceasedSum}</div><div>Recoveries: ${recoveredSum}</div>`);
+    if(sc!="LD"){
+      ele.setAttribute("data-info", `<strong>${keys[i]}</strong><br><div>Cases: ${confirmedSum}</div><div>Active: ${activeSum}</div><div>Deaths: ${deceasedSum}</div><div>Recoveries: ${recoveredSum}</div>`);
    
+    }
+  
   }
    
 
