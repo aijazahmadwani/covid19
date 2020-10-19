@@ -5,9 +5,13 @@ body{
   color:#000;
   border: 0;
   padding: 0;
+  background-color: #d6e0f5;
 }
 
 /*Navigation*/
+nav{
+  background: linear-gradient(to right, #660066 0%, #000066 100%);
+}
 .navbar{
     text-transform: uppercase;
     font-weight:700;
