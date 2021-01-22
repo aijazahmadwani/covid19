@@ -18,7 +18,7 @@ async function getData() {
 }
 states = []
 getData().then(res => {
-  keys = Object.keys(res)
+  keys = Object.keys(res);
   // console.log(keys);
 
   // console.log(res[keys[1]].districtData);
@@ -128,6 +128,7 @@ getData().then(res => {
     totalRecovered.innerHTML = totalRecoveredIndia;
   //   newRecovered.innerHTML += res.Global.NewRecovered;
     totalDeaths.innerHTML = totalDeathsIndia;
+    
   //   newDeaths.innerHTML += res.Global.NewDeaths;
   //   // LENGTH OF COUNTRIES
   //   const totalNoOfCountries = res.Countries.length;
@@ -175,11 +176,6 @@ const monthsNames = [
   "Nov",
   "Dec",
 ];
-
-function formatDate(dateString) {
-  let date = new Date(dateString);
-  return `${date.getDate()} ${monthsNames[date.getMonth() - 1]} ${date.getFullYear()}`;
-}
 
 
 a = "aijaz"

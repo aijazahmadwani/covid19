@@ -16,7 +16,6 @@ async function getData() {
 }
 
 getData().then(res => {
-  // console.log(res);
   lastUpdatedDate.innerHTML = formatDate(res.Date);
   totalCases.innerHTML += res.Global.TotalConfirmed;
   newCases.innerHTML += res.Global.NewConfirmed;
@@ -73,6 +72,7 @@ const monthsNames = [
 
 function formatDate(dateString) {
   let date = new Date(dateString);
-  return `${date.getDate()} ${monthsNames[date.getMonth() - 1]} ${date.getFullYear()}`;
+  return date;
+  //return `${date.getDate()} ${monthsNames[date.getMonth() - 1]} ${date.getFullYear()}`;
 }
 
