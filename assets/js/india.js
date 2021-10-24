@@ -1,5 +1,5 @@
 indiaURL = "https://api.covid19india.org/state_district_wise.json";
-let totalCasesIndia=0,totalDeathsIndia=0,totalRecoveredIndia=0;
+let totalCasesIndia = 0, totalDeathsIndia = 0, totalRecoveredIndia = 0;
 // indiaURL = "./indiaData.json";
 // SELECT GLOBAL ELEMENTS
 const totalCases = document.getElementById("totalCases");
@@ -62,17 +62,16 @@ getData().then(res => {
       </tr>
       `;
     // add data to map
-    if(res[keys[i]].statecode!='LA')
-  {
-    sc = res[keys[i]].statecode;
-    ele = document.getElementById(sc);
-    if(sc!="LD"){
-      ele.setAttribute("data-info", `<strong>${keys[i]}</strong><br><div>Cases: ${confirmedSum}</div><div>Active: ${activeSum}</div><div>Deaths: ${deceasedSum}</div><div>Recoveries: ${recoveredSum}</div>`);
-   
+    if (res[keys[i]].statecode != 'LA') {
+      sc = res[keys[i]].statecode;
+      ele = document.getElementById(sc);
+      if (sc != "LD") {
+        ele.setAttribute("data-info", `<strong>${keys[i]}</strong><br><div>Cases: ${confirmedSum}</div><div>Active: ${activeSum}</div><div>Deaths: ${deceasedSum}</div><div>Recoveries: ${recoveredSum}</div>`);
+
+      }
+
     }
-  
-  }
-   
+
 
   }
 
@@ -122,13 +121,13 @@ getData().then(res => {
   // }
 
   // console.log(res);
-    // lastUpdatedDate.innerHTML = formatDate(res.Date);
-    totalCases.innerHTML += totalCasesIndia;
+  // lastUpdatedDate.innerHTML = formatDate(res.Date);
+  totalCases.innerHTML += totalCasesIndia;
   //   newCases.innerHTML += res.Global.NewConfirmed;
-    totalRecovered.innerHTML = totalRecoveredIndia;
+  totalRecovered.innerHTML = totalRecoveredIndia;
   //   newRecovered.innerHTML += res.Global.NewRecovered;
-    totalDeaths.innerHTML = totalDeathsIndia;
-    
+  totalDeaths.innerHTML = totalDeathsIndia;
+
   //   newDeaths.innerHTML += res.Global.NewDeaths;
   //   // LENGTH OF COUNTRIES
   //   const totalNoOfCountries = res.Countries.length;
